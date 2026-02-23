@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2 class="center">Edit Blog ✏️</h2>
+
+<form method="POST">
+
+<label>Blog Content</label>
+<textarea rows="10" name="blog_text">{{blog_text}}</textarea>
+
+<br><br>
+
+<div class="center">
+<input type="submit" value="Update" name="action">
+<input type="submit" value="Delete" name="action">
+</div>
+
+</form>
+
+{% endblock %}

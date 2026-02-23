@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<style>
+.auth-card{
+max-width:400px;
+margin:auto;
+padding:30px;
+border-radius:20px;
+background:#111;
+box-shadow:0 0 30px rgba(0,0,0,0.6);
+}
+</style>
+
+<div class="auth-card center">
+
+<h2>Login</h2>
+
+<form method="POST" action="/login">
+
+<input type="email" name="email" placeholder="Email"><br><br>
+<input type="password" name="password" placeholder="Password"><br><br>
+
+<input type="submit" value="Login">
+
+</form>
+
+<br>
+<a href="{{ url_for('register') }}">Create Account</a>
+
+</div>
+
+{% endblock %}

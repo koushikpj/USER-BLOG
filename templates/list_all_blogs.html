@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2 class="center">
+{% if current_user.is_anonymous %}
+Welcome Guest 👋
+{% else %}
+Welcome {{ current_user.username }} 👋
+{% endif %}
+</h2>
+
+<table>
+<thead>
+<tr>
+<th>Author</th>
+<th>Category</th>
+<th>Content</th>
+<th>Ratings</th>
+<th>Reads</th>
+</tr>
+</thead>
+
+<tbody>
+{% for a_blog in all_blogs %}
+
+{% set author_name = all_users[a_blog.blog_user_id-1].username if all_users|length >= a_blog.blog_user_id else "Unknown" %}
+{% set category_name = all_categories[a_blog.category_id-1] if all_categories|length >= a_blog.category_id else "None" %}
+
+<tr>
+<td>{{ author_name }}</td>
+<td>{{ category_name }}</td>
+
+<td>
+{% if current_user.is_authenticated %}
+<a href="/blogDetail/{{ a_blog.id }}/{{ author_name }}/{{ category_name }}">
+{{ a_blog.blog_text|truncate(150) }}
+</a>
+{% else %}
+{{ a_blog.blog_text|truncate(150) }}
+{% endif %}
+</td>
+
+<td>{{ a_blog.blog_rating_count }}</td>
+<td>{{ a_blog.blog_read_count }}</td>
+
+</tr>
+{% endfor %}
+</tbody>
+</table>
+
+{% endblock %}

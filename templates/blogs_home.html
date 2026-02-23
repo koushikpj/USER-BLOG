@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="center">
+<h1>Welcome to Blog Universe 🚀</h1>
+<p>Select what you want to do</p><br>
+
+<a href="{{url_for('createBlog')}}"><button>Create Blog</button></a>
+<a href="{{url_for('viewBlog')}}"><button>My Blogs</button></a>
+<a href="{{url_for('listAllBlogs')}}"><button>Explore Blogs</button></a>
+
+</div>
+
+{% endblock %}
+

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2 class="center">My Blogs 📝</h2>
+
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Content</th>
+<th>Reads</th>
+<th>Ratings</th>
+</tr>
+</thead>
+
+<tbody>
+{% for a_blog in all_self_blogs %}
+<tr>
+
+<td>{{ all_categories[a_blog.category_id-1] }}</td>
+
+<td>
+<a href="/self_blog_detail/{{a_blog.id}}/{{all_categories[a_blog.category_id-1]}}">
+{{ a_blog.blog_text|safe|truncate(200) }}
+</a>
+</td>
+
+<td>{{ a_blog.blog_read_count }}</td>
+<td>{{ a_blog.blog_rating_count }}</td>
+
+</tr>
+{% endfor %}
+</tbody>
+</table>
+
+{% endblock %}

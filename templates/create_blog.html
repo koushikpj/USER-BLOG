@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2 class="center">Create Blog ✍️</h2>
+
+<form method="POST" action="{{ url_for('createBlog') }}">
+
+<label>Select Category</label>
+<select name="category_id">
+{% for a_category in all_category_id %}
+<option value="{{a_category}}">
+{{all_category_name[loop.index0]}}
+</option>
+{% endfor %}
+</select>
+
+<br><br>
+
+<label>Blog Content</label>
+<textarea rows="10" name="blog_text"></textarea>
+
+<br><br>
+<div class="center">
+<input type="submit" value="Publish Blog">
+</div>
+
+</form>
+
+{% endblock %}

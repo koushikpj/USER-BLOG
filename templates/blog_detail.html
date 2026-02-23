@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2 class="center">Blog Detail 📖</h2>
+
+<p><b>Category:</b> {{category}}</p>
+<p><b>Author:</b> {{author}}</p>
+<p><b>Reads:</b> {{blog.blog_read_count}}</p>
+<p><b>Average Rating:</b> {{rating}}</p>
+
+<hr>
+
+<div>
+{{blog.blog_text|safe}}
+</div>
+
+<hr>
+
+<p>Total Users Rated: {{blog.blog_rating_count}}</p>
+
+{% if current_user.username != author %}
+
+<form method="POST" action="{{ url_for('blog_detail', blog_id=blog.id, username=author, category=category) }}">
+
+<label>Rate Blog</label>
+<select name="rating">
+<option value='1'>Bad</option>
+<option value='2'>Okay</option>
+<option value='3'>Good</option>
+<option value='4'>Great</option>
+<option value='5'>Excellent</option>
+</select>
+
+<br><br>
+
+<label>Comment</label>
+<textarea name="comment"></textarea>
+
+<br><br>
+<input type="submit" value="Submit Feedback">
+
+</form>
+
+{% endif %}
+
+{% endblock %}
